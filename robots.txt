@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /wordpress/
 Disallow: /ghost/
+Disallow: /magento/
+Disallow: /node_modules/
+Disallow: /vendor/
+Disallow: /grunt/
