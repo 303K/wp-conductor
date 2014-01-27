@@ -1,5 +1,6 @@
 # Crap
 .DS_Store
+.log
 
 # Composer
 composer.lock
@@ -17,6 +18,9 @@ wp-content/upgrade
 ghost/*
 !ghost/content
 !ghost/config.js
+
+# Grunt
+node_modules
 
 # Codekit
 codekit-config.json
