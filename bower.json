@@ -7,6 +7,7 @@
         "enquire":          "latest",
         "carouFredSel":     "latest",
         "modernizr":        "latest",
+        "chosen":           "latest",
         "bootstrap":        ">=3.0.3"
     },
     "private": "true"
