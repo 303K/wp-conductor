@@ -13,6 +13,10 @@ wp-content/themes/scaffold/
 wp-content/themes/scaffold-child/
 wp-content/upgrade
 
+# Plugins
+!wp-content/plugins/
+wp-content/plugins/*
+
 # Ghost
 !ghost/
 ghost/*
