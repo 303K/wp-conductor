@@ -22,9 +22,7 @@
         "gizburdt/wabbr":                               "dev-master",
         "gizburdt/scaffold":                            "dev-master",
         "gizburdt/scaffold-child":                      "dev-master",
-        "gizburdt/cuztom":                              "dev-master",
-        "davatron5000/fitvids":                         "dev-master",
-        "mudge/example":                                "dev-master"
+        "gizburdt/cuztom":                              "dev-master"
     },
     "require-dev": {
         "wpackagist/user-switching":                    "dev-master",
@@ -77,30 +75,6 @@
             "name": "gizburdt/cuztom",
             "type": "vcs",
             "url": "https://github.com/Gizburdt/Wordpress-Cuztom-Helper.git"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "davatron5000/fitvids",
-                "version": "dev-master",
-                "source": {
-                    "url": "https://github.com/davatron5000/FitVids.js.git",
-                    "type": "git",
-                    "reference": "origin/master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mudge/example",
-                "version": "dev-master",
-                "source": {
-                    "url": "https://github.com/mudge/jquery_example.git",
-                    "type": "git",
-                    "reference": "origin/master"
-                }
-            }
         }
     ]
 }
