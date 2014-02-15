@@ -9,7 +9,7 @@
         "modernizr":        "latest",
         "chosen":           "latest",
         "fitvids":          "latest",
-        "bootstrap":        ">=3.0.3"
+        "bootstrap":        ">=3.1.1"
     },
     "private": "true"
 }
