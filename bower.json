@@ -8,6 +8,7 @@
         "carouFredSel":     "latest",
         "modernizr":        "latest",
         "chosen":           "latest",
+        "fitvids":          "latest",
         "bootstrap":        ">=3.0.3"
     },
     "private": "true"
