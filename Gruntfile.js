@@ -4,53 +4,65 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         prompt: {
+            url: {
+                options: {
+                    questions: [
+                        {
+                            config: 'conductor.project.url',
+                            type: 'input',
+                            message: 'PROJECT_URL:',
+                            default: 'http://conductor.local'
+                        }
+                    ]
+                }
+            },
             wp_config: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.db.name',
+                            config: 'conductor.config.db.name',
                             type: 'input',
                             message: 'DB_NAME:',
                             default: 'conductor'
                         },
                         {
-                            config: 'conductor.db.user',
+                            config: 'conductor.config.db.user',
                             type: 'input',
                             message: 'DB_USER:',
                             default: 'root'
                         },
                         {
-                            config: 'conductor.db.password',
+                            config: 'conductor.config.db.password',
                             type: 'input',
                             message: 'DB_PASSWORD:',
                             default: 'root'
                         },
                         {
-                            config: 'conductor.db.host',
+                            config: 'conductor.config.db.host',
                             type: 'input',
                             message: 'DB_HOST:',
                             default: 'localhost'
                         },
                         {
-                            config: 'conductor.db.charset',
+                            config: 'conductor.config.db.charset',
                             type: 'input',
                             message: 'DB_CHARSET:',
                             default: 'utf8'
                         },
                         {
-                            config: 'conductor.db.prefix',
+                            config: 'conductor.config.db.prefix',
                             type: 'input',
                             message: 'DB_PREFIX:',
                             default: 'wp_'
                         },
                         {
-                            config: 'conductor.wp.lang',
+                            config: 'conductor.config.wp.lang',
                             type: 'input',
                             message: 'WP_LANG:',
                             default: 'nl_NL'
                         },
                         {
-                            config: 'conductor.wp.debug',
+                            config: 'conductor.config.wp.debug',
                             type: 'input',
                             message: 'WP_DEBUG:',
                             default: 'true'
@@ -68,16 +80,22 @@ module.exports = function(grunt) {
                             default: 'Conductor'
                         },
                         {
-                            config: 'conductor.user.name',
+                            config: 'conductor.admin.name',
                             type: 'input',
-                            message: 'USER_NAME:',
+                            message: 'ADMIN_NAME:',
                             default: 'user'
                         },
                         {
-                            config: 'conductor.user.password',
+                            config: 'conductor.admin.password',
                             type: 'password',
-                            message: 'USER_PASSWORD:',
+                            message: 'ADMIN_PASSWORD:',
                             default: 'password'
+                        },
+                        {
+                            config: 'conductor.admin.email',
+                            type: 'input',
+                            message: 'ADMIN_EMAIL:',
+                            default: 'admin@example.com'
                         },
                     ]
                 }
@@ -94,31 +112,19 @@ module.exports = function(grunt) {
                     ]
                 }
             },
-            url: {
-                options: {
-                    questions: [
-                        {
-                            config: 'conductor.project.url',
-                            type: 'input',
-                            message: 'PROJECT_URL:',
-                            default: 'http://conductor.local'
-                        }
-                    ]
-                }
-            },
             login: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.user.name',
+                            config: 'conductor.admin.name',
                             type: 'input',
-                            message: 'USER_NAME:',
+                            message: 'ADMIN_NAME:',
                             default: 'user'
                         },
                         {
-                            config: 'conductor.user.password',
+                            config: 'conductor.admin.password',
                             type: 'password',
-                            message: 'USER_PASSWORD:',
+                            message: 'ADMIN_PASSWORD:',
                             default: 'password'
                         },
                     ]
@@ -146,7 +152,7 @@ module.exports = function(grunt) {
                             default: 'password'
                         },
                         {
-                            config: 'conductor.user.user.role',
+                            config: 'conductor.user.role',
                             type: 'list',
                             message: 'USER_ROLE:',
                             choices: [
@@ -176,15 +182,15 @@ module.exports = function(grunt) {
                     process: function(content) {
                         return content
                             .replace( "{PROJECT_URL}",  grunt.config( 'conductor.project.url' ) )
-                            .replace( "{DB_NAME}",      grunt.config( 'conductor.db.name' ) )
-                            .replace( "{DB_USER}",      grunt.config( 'conductor.db.user' ) )
-                            .replace( "{DB_PASSWORD}",  grunt.config( 'conductor.db.password' ) )
-                            .replace( "{DB_HOST}",      grunt.config( 'conductor.db.host' ) )
-                            .replace( "{DB_CHARSET}",   grunt.config( 'conductor.db.charset' ) )
+                            .replace( "{DB_NAME}",      grunt.config( 'conductor.config.db.name' ) )
+                            .replace( "{DB_USER}",      grunt.config( 'conductor.config.db.user' ) )
+                            .replace( "{DB_PASSWORD}",  grunt.config( 'conductor.config.db.password' ) )
+                            .replace( "{DB_HOST}",      grunt.config( 'conductor.config.db.host' ) )
+                            .replace( "{DB_CHARSET}",   grunt.config( 'conductor.config.db.charset' ) )
                             .replace( "{DB_COLLATE}",   '' )
-                            .replace( "{DB_PREFIX}",    grunt.config( 'conductor.db.prefix' ) )
-                            .replace( "{WP_LANG}",      grunt.config( 'conductor.wp.lang' ) )
-                            .replace( "{WP_DEBUG}",     grunt.config( 'conductor.wp.debug' ) )
+                            .replace( "{DB_PREFIX}",    grunt.config( 'conductor.config.db.prefix' ) )
+                            .replace( "{WP_LANG}",      grunt.config( 'conductor.config.wp.lang' ) )
+                            .replace( "{WP_DEBUG}",     grunt.config( 'conductor.config.wp.debug' ) )
                             .replace( "{WP_KEYS}",      '' );
                     }
                 }
@@ -193,48 +199,44 @@ module.exports = function(grunt) {
                 expand: true,
                 flatten: true,
                 src: 'wp-content/themes/scaffold-child/*',
-                dest: 'wp-content/themes/project' // + grunt.config( 'conductor.project.name' )
+                dest: 'wp-content/themes/<%= conductor.theme.name %>'
             }
         },
         http: {
             install: {
                 options: {
-                    url: 'http://conductor.local/wordpress/wp-admin/install.php?step=2',
+                    url: '<%= conductor.project.url %>/wordpress/wp-admin/install.php?step=2',
                     method: 'POST',
                     form: {
-                        weblog_title:       'Conductor', 
-                        user_name:          'user',
-                        admin_password:     'password',
-                        admin_password2:    'password',
-                        admin_email:        'gizburdt@gmail.com'
+                        weblog_title:       '<%= conductor.project.title %>', 
+                        user_name:          '<%= conductor.admin.name %>',
+                        admin_password:     '<%= conductor.admin.password %>',
+                        admin_password2:    '<%= conductor.admin.password %>',
+                        admin_email:        '<%= conductor.admin.email %>'
                     }
                 },
             },
             login: {
                 options: {
-                    url: 'http://conductor.local/wordpress/wp-admin/install.php?step=2',
+                    url: '<%= conductor.project.url %>/wordpress/wp-admin/install.php?step=2',
                     method: 'POST',
                     form: {
-                        user_login:         'user',
-                        user_pass:          'password',
+                        user_login:         '<%= conductor.admin.name %>',
+                        user_pass:          '<%= conductor.admin.password %>',
                     }
                 },
             },
             create_user: {
                 options: {
-                    url: 'http://conductor.local/wordpress/wp-admin/user-new.php',
+                    url: '<%= conductor.project.url %>/wordpress/wp-admin/user-new.php',
                     method: 'POST',
                     form: {
-                        user_login:         'gijs2',
-                        user_email:         'gijs@ginius.nl',
-                        pass:               'test',
-                        pass2:              'test',
-                        role:               'subscriber',
-                        send_password:      1,
-                    },
-                    auth: {
-                        user:               'user',
-                        pass:               'password'
+                        user_login:         '<%= conductor.user.name %>',
+                        user_email:         '<%= conductor.user.email %>',
+                        pass:               '<%= conductor.user.password %>',
+                        pass2:              '<%= conductor.user.password %>',
+                        role:               '<%= conductor.user.role %>',
+                        send_password:      '<%= conductor.user.password.send %>',
                     }
                 },
             }
