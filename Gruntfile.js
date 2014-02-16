@@ -256,7 +256,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Taskrunners
-    grunt.registerTask( 'setup', ['prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
+    grunt.registerTask( 'setup', ['prompt:url', 'prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
     grunt.registerTask( 'create-user', ['prompt:url', 'prompt:login', 'prompt:create_user', 'http:create_user'] );
     grunt.registerTask( 'default', ['concat'] );
 };
