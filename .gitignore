@@ -8,8 +8,8 @@ vendor/
 
 # Wordpress
 .htaccess
-wp-config.php
 wordpress/
+wp-config.php
 wp-content/themes/scaffold/
 wp-content/themes/scaffold-child/
 wp-content/upgrade
