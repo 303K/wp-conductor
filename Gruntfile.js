@@ -132,19 +132,16 @@ module.exports = function(grunt) {
                             config: 'conductor.user.name',
                             type: 'input',
                             message: 'USER_NAME:',
-                            default: 'user'
                         },
                         {
                             config: 'conductor.user.email',
                             type: 'input',
                             message: 'USER_EMAIL:',
-                            default: 'user@example.com'
                         },
                         {
                             config: 'conductor.user.password',
                             type: 'password',
                             message: 'USER_PASSWORD:',
-                            default: 'password'
                         },
                         {
                             config: 'conductor.user.role',
