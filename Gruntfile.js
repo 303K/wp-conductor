@@ -212,10 +212,11 @@ module.exports = function(grunt) {
                 options: {
                     url: '<%= conductor.project.url %>/wordpress/wp-login.php',
                     jar: true,
+                    ignoreErrors: true,
                     method: 'POST',
-                    form: {
-                        user_login:         '<%= conductor.admin.name %>',
-                        user_pass:          '<%= conductor.admin.password %>',
+                    form: { 
+                        log:                '<%= conductor.admin.name %>',
+                        pwd:                '<%= conductor.admin.password %>',
                     }
                 },
             },
@@ -226,11 +227,13 @@ module.exports = function(grunt) {
                     method: 'POST',
                     form: {
                         user_login:         '<%= conductor.user.name %>',
-                        user_email:         '<%= conductor.user.email %>',
+                        email:              '<%= conductor.user.email %>',
                         pass:               '<%= conductor.user.password %>',
                         pass2:              '<%= conductor.user.password %>',
                         role:               '<%= conductor.user.role %>',
                         send_password:      '<%= conductor.user.password.send %>',
+                        action:             'createuser',
+                        createuser:         'Add New User'
                     }
                 },
             }
