@@ -211,6 +211,7 @@ module.exports = function(grunt) {
             login: {
                 options: {
                     url: '<%= conductor.project.url %>/wordpress/wp-login.php',
+                    jar: true,
                     method: 'POST',
                     form: {
                         user_login:         '<%= conductor.admin.name %>',
@@ -221,6 +222,7 @@ module.exports = function(grunt) {
             create_user: {
                 options: {
                     url: '<%= conductor.project.url %>/wordpress/wp-admin/user-new.php',
+                    jar: true,
                     method: 'POST',
                     form: {
                         user_login:         '<%= conductor.user.name %>',
