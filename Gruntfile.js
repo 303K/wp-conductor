@@ -83,19 +83,16 @@ module.exports = function(grunt) {
                             config: 'conductor.admin.name',
                             type: 'input',
                             message: 'ADMIN_NAME:',
-                            default: 'user'
                         },
                         {
                             config: 'conductor.admin.password',
                             type: 'password',
                             message: 'ADMIN_PASSWORD:',
-                            default: 'password'
                         },
                         {
                             config: 'conductor.admin.email',
                             type: 'input',
                             message: 'ADMIN_EMAIL:',
-                            default: 'admin@example.com'
                         },
                     ]
                 }
@@ -119,13 +116,11 @@ module.exports = function(grunt) {
                             config: 'conductor.admin.name',
                             type: 'input',
                             message: 'ADMIN_NAME:',
-                            default: 'user'
                         },
                         {
                             config: 'conductor.admin.password',
                             type: 'password',
                             message: 'ADMIN_PASSWORD:',
-                            default: 'password'
                         },
                     ]
                 }
@@ -250,7 +245,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-prompt');
     grunt.loadNpmTasks('grunt-http');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-rename');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -258,7 +252,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Taskrunners
-    grunt.registerTask( 'setup', ['prompt:url', 'prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
+    grunt.registerTask( 'install', ['prompt:url', 'prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
     grunt.registerTask( 'create-user', ['prompt:url', 'prompt:login', 'prompt:create_user', 'http:create_user'] );
     grunt.registerTask( 'default', ['concat'] );
 };
