@@ -213,7 +213,7 @@ module.exports = function(grunt) {
             },
             login: {
                 options: {
-                    url: '<%= conductor.project.url %>/wordpress/wp-admin/install.php?step=2',
+                    url: '<%= conductor.project.url %>/wordpress/wp-login.php',
                     method: 'POST',
                     form: {
                         user_login:         '<%= conductor.admin.name %>',
@@ -253,6 +253,6 @@ module.exports = function(grunt) {
 
     // Taskrunners
     grunt.registerTask( 'install', ['prompt:url', 'prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
-    grunt.registerTask( 'create-user', ['prompt:url', 'prompt:login', 'prompt:create_user', 'http:create_user'] );
+    grunt.registerTask( 'create-user', ['prompt:url', 'prompt:login', 'prompt:create_user', 'http:login', 'http:create_user'] );
     grunt.registerTask( 'default', ['concat'] );
 };
