@@ -8,5 +8,5 @@ Wordpress Conductor is a framwork for kickstarting Wordpress development. By com
 * `php composer.phar update`
 * `bower install`
 * `npm install`
-* `grunt install --force` and fill in your credentials. We call --force to skip failing steps, like if the database already exists.
+* `grunt install --force` and fill in your credentials. --force will skip failing tasks.
 * Open `http://localhost/my-project/wordpress/wp-admin and be awesome!
