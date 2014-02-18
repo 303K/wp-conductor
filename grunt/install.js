@@ -7,13 +7,12 @@ module.exports = function(grunt) {
 		'prompt:wp_config', 
 		'prompt:wp_install', 
 		'prompt:wp_theme', 
-		// 'prompt:wp_plugins', 
 		
 		// Exec
 		'exec:wp_download',
+		'exec:wp_config',
 		'exec:wp_db_create',
 		'exec:wp_install',
-		// 'exec:wp_plugins',
 
 		// // Copy
 		'copy:wp_config', 
