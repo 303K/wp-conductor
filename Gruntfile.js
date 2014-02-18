@@ -2,13 +2,19 @@ module.exports = function(grunt) {
 
     // Configuration
     grunt.initConfig({
+        
         pkg: grunt.file.readJSON('package.json'),
+        
+        // Prompt
+        // ------------------------
         prompt: {
-            url: {
+
+            // Project
+            project: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.project.url',
+                            config: 'project.url',
                             type: 'input',
                             message: 'PROJECT_URL:',
                             default: 'http://conductor.local'
@@ -16,53 +22,75 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+
+            // Download
+            wp_download: {
+                options: {
+                    questions: [
+                        {
+                            config: 'wp.download.locale',
+                            type: 'input',
+                            message: 'WP_LOCALE:',
+                            default: 'nl_NL'
+                        },
+                        {
+                            config: 'wp.download.version',
+                            type: 'input',
+                            message: 'WP_VERSION:',
+                            default: '3.8.1'
+                        }
+                    ]
+                }
+            },
+
+            // Config
             wp_config: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.config.db.name',
+                            config: 'wp.config.db.name',
                             type: 'input',
                             message: 'DB_NAME:',
                             default: 'conductor'
                         },
                         {
-                            config: 'conductor.config.db.user',
+                            config: 'wp.config.db.user',
                             type: 'input',
                             message: 'DB_USER:',
                             default: 'root'
                         },
                         {
-                            config: 'conductor.config.db.password',
+                            config: 'wp.config.db.password',
                             type: 'input',
                             message: 'DB_PASSWORD:',
                             default: 'root'
                         },
                         {
-                            config: 'conductor.config.db.host',
+                            config: 'wp.config.db.host',
                             type: 'input',
                             message: 'DB_HOST:',
                             default: 'localhost'
                         },
                         {
-                            config: 'conductor.config.db.charset',
+                            config: 'wp.config.db.charset',
                             type: 'input',
                             message: 'DB_CHARSET:',
                             default: 'utf8'
                         },
                         {
-                            config: 'conductor.config.db.prefix',
+                            config: 'wp.config.db.prefix',
                             type: 'input',
                             message: 'DB_PREFIX:',
                             default: 'wp_'
                         },
                         {
-                            config: 'conductor.config.wp.lang',
+                            config: 'wp.config.wp.lang',
                             type: 'input',
                             message: 'WP_LANG:',
                             default: 'nl_NL'
                         },
                         {
-                            config: 'conductor.config.wp.debug',
+                            config: 'wp.config.wp.debug',
                             type: 'input',
                             message: 'WP_DEBUG:',
                             default: 'true'
@@ -70,191 +98,111 @@ module.exports = function(grunt) {
                     ]
                 }
             },
-            install: {
+
+            // Install
+            wp_install: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.website.title',
+                            config: 'project.title',
                             type: 'input',
                             message: 'WEBSITE_TITLE:',
                             default: 'Conductor'
                         },
                         {
-                            config: 'conductor.admin.name',
+                            config: 'wp.admin.name',
                             type: 'input',
                             message: 'ADMIN_NAME:',
                         },
                         {
-                            config: 'conductor.admin.password',
+                            config: 'wp.admin.password',
                             type: 'password',
                             message: 'ADMIN_PASSWORD:',
                         },
                         {
-                            config: 'conductor.admin.email',
+                            config: 'wp.admin.email',
                             type: 'input',
                             message: 'ADMIN_EMAIL:',
                         },
                     ]
                 }
             },
-            theme: {
+
+            // Theme
+            wp_theme: {
                 options: {
                     questions: [
                         {
-                            config: 'conductor.theme.name',
+                            config: 'wp.theme.name',
                             type: 'input',
                             message: 'THEME_NAME:',
                             default: 'conductor'
                         }
                     ]
                 }
-            },
-            login: {
-                options: {
-                    questions: [
-                        {
-                            config: 'conductor.admin.name',
-                            type: 'input',
-                            message: 'ADMIN_NAME:',
-                        },
-                        {
-                            config: 'conductor.admin.password',
-                            type: 'password',
-                            message: 'ADMIN_PASSWORD:',
-                        },
-                    ]
-                }
-            },
-            create_user: {
-                options: {
-                    questions: [
-                        {
-                            config: 'conductor.user.name',
-                            type: 'input',
-                            message: 'USER_NAME:',
-                        },
-                        {
-                            config: 'conductor.user.email',
-                            type: 'input',
-                            message: 'USER_EMAIL:',
-                        },
-                        {
-                            config: 'conductor.user.password',
-                            type: 'password',
-                            message: 'USER_PASSWORD:',
-                        },
-                        {
-                            config: 'conductor.user.role',
-                            type: 'list',
-                            message: 'USER_ROLE:',
-                            choices: [
-                                { name: 'Subscriber', value: 'subscriber', checked: true },
-                                { name: 'Contributor', value: 'contributor' },
-                                { name: 'Author', value: 'author' },
-                                { name: 'Editor', value: 'editor' },
-                                { name: 'Administrator', value: 'administrator' },
-                            ],
-                            default: 'subscriber'
-                        },
-                        {
-                            config: 'conductor.user.password.send',
-                            type: 'input',
-                            message: 'SEND_PASSWORD:',
-                            default: 1
-                        },
-                    ]
-                }
             }
+
         },
+        // --
+
+        // Copy
+        // ------------------------
         copy: {
+
+            // Config
             wp_config: {
-                src: 'wp-config.php.dist',
-                dest: 'wp-config.php',
-                options: {
-                    process: function(content) {
-                        return content
-                            .replace( "{PROJECT_URL}",  grunt.config( 'conductor.project.url' ) )
-                            .replace( "{DB_NAME}",      grunt.config( 'conductor.config.db.name' ) )
-                            .replace( "{DB_USER}",      grunt.config( 'conductor.config.db.user' ) )
-                            .replace( "{DB_PASSWORD}",  grunt.config( 'conductor.config.db.password' ) )
-                            .replace( "{DB_HOST}",      grunt.config( 'conductor.config.db.host' ) )
-                            .replace( "{DB_CHARSET}",   grunt.config( 'conductor.config.db.charset' ) )
-                            .replace( "{DB_COLLATE}",   '' )
-                            .replace( "{DB_PREFIX}",    grunt.config( 'conductor.config.db.prefix' ) )
-                            .replace( "{WP_LANG}",      grunt.config( 'conductor.config.wp.lang' ) )
-                            .replace( "{WP_DEBUG}",     grunt.config( 'conductor.config.wp.debug' ) )
-                            .replace( "{WP_KEYS}",      '' );
-                    }
-                }
+                expand: true,
+                flatten: true,
+                src: 'wordpress/wp-config.php',
+                dest: './'
             },
-            theme: {
+
+            // Theme
+            wp_theme: {
                 expand: true,
                 flatten: true,
                 src: 'wp-content/themes/scaffold-child/*',
-                dest: 'wp-content/themes/<%= conductor.theme.name %>'
+                dest: 'wp-content/themes/<%= wp.theme.name %>'
             }
+
         },
-        http: {
-            install: {
-                options: {
-                    url: '<%= conductor.project.url %>/wordpress/wp-admin/install.php?step=2',
-                    method: 'POST',
-                    form: {
-                        weblog_title:       '<%= conductor.project.title %>', 
-                        user_name:          '<%= conductor.admin.name %>',
-                        admin_password:     '<%= conductor.admin.password %>',
-                        admin_password2:    '<%= conductor.admin.password %>',
-                        admin_email:        '<%= conductor.admin.email %>'
-                    }
-                },
+        // --
+
+        exec: {
+
+            // Download
+            wp_download: {
+                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force'
             },
-            login: {
-                options: {
-                    url: '<%= conductor.project.url %>/wordpress/wp-login.php',
-                    jar: true,
-                    ignoreErrors: true,
-                    method: 'POST',
-                    form: { 
-                        log:                '<%= conductor.admin.name %>',
-                        pwd:                '<%= conductor.admin.password %>',
-                    }
-                },
+
+            // Config
+            wp_config: {
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %>'
             },
-            create_user: {
-                options: {
-                    url: '<%= conductor.project.url %>/wordpress/wp-admin/user-new.php',
-                    jar: true,
-                    method: 'POST',
-                    form: {
-                        user_login:         '<%= conductor.user.name %>',
-                        email:              '<%= conductor.user.email %>',
-                        pass:               '<%= conductor.user.password %>',
-                        pass2:              '<%= conductor.user.password %>',
-                        role:               '<%= conductor.user.role %>',
-                        send_password:      '<%= conductor.user.password.send %>',
-                        action:             'createuser',
-                        createuser:         'Add New User'
-                    }
-                },
+
+            // Database
+            wp_db_create: {
+                command: 'php wp-cli.phar db create'
+            },
+
+            // Install
+            wp_install: {
+                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
             }
-        },
-        concat: {
-           
+
         }
+        // --
     });
 
     // Plugins
-    grunt.loadNpmTasks('grunt-prompt');
-    grunt.loadNpmTasks('grunt-http');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    require('load-grunt-tasks')(grunt);
 
-    // Taskrunners
-    grunt.registerTask( 'install', ['prompt:url', 'prompt:wp_config', 'prompt:install', 'prompt:theme', 'copy:wp_config', 'copy:theme', 'http:install'] );
-    grunt.registerTask( 'create-user', ['prompt:url', 'prompt:login', 'prompt:create_user', 'http:login', 'http:create_user'] );
-    grunt.registerTask( 'default', ['concat'] );
+    // Load tasks
+    grunt.loadTasks('grunt');
+
+    // Default
+    grunt.registerTask( 'default', [
+        'concat'
+    ] );
+
 };
