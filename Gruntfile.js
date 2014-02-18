@@ -104,7 +104,7 @@ module.exports = function(grunt) {
                 options: {
                     questions: [
                         {
-                            config: 'wp.website.title',
+                            config: 'project.title',
                             type: 'input',
                             message: 'WEBSITE_TITLE:',
                             default: 'Conductor'
@@ -140,7 +140,8 @@ module.exports = function(grunt) {
                         }
                     ]
                 }
-            },
+            }
+
         },
         // --
 
@@ -150,41 +151,47 @@ module.exports = function(grunt) {
 
             // Config
             wp_config: {
-                src: 'wp-config.php.dist',
-                dest: 'wp-config.php',
-                options: {
-                    process: function(content) {
-                        return content
-                            .replace( "{PROJECT_URL}",  grunt.config( 'project.url' ) )
-                            .replace( "{DB_NAME}",      grunt.config( 'wp.config.db.name' ) )
-                            .replace( "{DB_USER}",      grunt.config( 'wp.config.db.user' ) )
-                            .replace( "{DB_PASSWORD}",  grunt.config( 'wp.config.db.password' ) )
-                            .replace( "{DB_HOST}",      grunt.config( 'wp.config.db.host' ) )
-                            .replace( "{DB_CHARSET}",   grunt.config( 'wp.config.db.charset' ) )
-                            .replace( "{DB_COLLATE}",   '' )
-                            .replace( "{DB_PREFIX}",    grunt.config( 'wp.config.db.prefix' ) )
-                            .replace( "{WP_LANG}",      grunt.config( 'wp.config.wp.lang' ) )
-                            .replace( "{WP_DEBUG}",     grunt.config( 'wp.config.wp.debug' ) )
-                            .replace( "{WP_KEYS}",      '' );
-                    }
-                }
+                expand: true,
+                flatten: true,
+                src: 'wordpress/wp-config.php',
+                dest: './'
             },
 
             // Theme
-            theme: {
+            wp_theme: {
                 expand: true,
                 flatten: true,
                 src: 'wp-content/themes/scaffold-child/*',
                 dest: 'wp-content/themes/<%= wp.theme.name %>'
             }
+
         },
         // --
 
         exec: {
+
+            // Download
             wp_download: {
-                command: 'wp core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress'
+                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force'
+            },
+
+            // Config
+            wp_config: {
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %>'
+            },
+
+            // Database
+            wp_db_create: {
+                command: 'php wp-cli.phar db create'
+            },
+
+            // Install
+            wp_install: {
+                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
             }
+
         }
+        // --
     });
 
     // Plugins
