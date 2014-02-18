@@ -140,6 +140,51 @@ module.exports = function(grunt) {
                         }
                     ]
                 }
+            },
+
+            // Plugins
+            wp_plugins: {
+                options: {
+                    questions: [
+                        {
+                            config: 'wp.plugins',
+                            type: 'checkbox',
+                            message: 'WP_PLUGINS:',
+                            choices: [
+                                {
+                                    value: 'jetpack',
+                                    name: 'Jetpack',
+                                    checked: true
+                                },
+                                {
+                                    value: 'posts-to-posts',
+                                    name: 'Posts2posts',
+                                    checked: true
+                                },
+                                {
+                                    value: 'wordpress-seo',
+                                    name: 'Wordpress SEO',
+                                    checked: true
+                                },
+                                {
+                                    value: 'google-analytics-for-wordpress',
+                                    name: 'Google Analytics',
+                                    checked: true
+                                },
+                                {
+                                    value: 'regenerate-thumbnails',
+                                    name: 'Regenerate Thumbnails',
+                                    checked: true
+                                },
+                                {
+                                    value: 'woosidebars',
+                                    name: 'Woosidebars',
+                                    checked: true
+                                }
+                            ]
+                        }
+                    ]
+                }
             }
 
         },
@@ -151,10 +196,24 @@ module.exports = function(grunt) {
 
             // Config
             wp_config: {
-                expand: true,
-                flatten: true,
-                src: 'wordpress/wp-config.php',
-                dest: './'
+                src: 'wp-config.php.dist',
+                dest: 'wp-config.php',
+                options: {
+                    process: function(content) {
+                        return content
+                            .replace( "{PROJECT_URL}",  grunt.config( 'project.url' ) )
+                            .replace( "{DB_NAME}",      grunt.config( 'wp.config.db.name' ) )
+                            .replace( "{DB_USER}",      grunt.config( 'wp.config.db.user' ) )
+                            .replace( "{DB_PASSWORD}",  grunt.config( 'wp.config.db.password' ) )
+                            .replace( "{DB_HOST}",      grunt.config( 'wp.config.db.host' ) )
+                            .replace( "{DB_CHARSET}",   grunt.config( 'wp.config.db.charset' ) )
+                            .replace( "{DB_COLLATE}",   '' )
+                            .replace( "{DB_PREFIX}",    grunt.config( 'wp.config.db.prefix' ) )
+                            .replace( "{WP_LANG}",      grunt.config( 'wp.config.wp.lang' ) )
+                            .replace( "{WP_DEBUG}",     grunt.config( 'wp.config.wp.debug' ) )
+                            .replace( "{WP_KEYS}",      '' );
+                    }
+                }
             },
 
             // Theme
@@ -175,11 +234,6 @@ module.exports = function(grunt) {
                 command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force'
             },
 
-            // Config
-            wp_config: {
-                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %>'
-            },
-
             // Database
             wp_db_create: {
                 command: 'php wp-cli.phar db create'
@@ -188,6 +242,15 @@ module.exports = function(grunt) {
             // Install
             wp_install: {
                 command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
+            },
+
+            // Plugins
+            wp_plugins: {
+                cmd: function() {
+                    var plugins = this.config('wp.plugins');
+
+                    return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
+                }
             }
 
         }
