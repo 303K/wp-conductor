@@ -249,6 +249,11 @@ module.exports = function(grunt) {
                 command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
             },
 
+            // Siteurl
+            wp_siteurl: {
+                command: 'php wp-cli.phar option update siteurl <%= project.url %>/wordpress'
+            },
+
             // Plugins
             wp_plugins: {
                 cmd: function() {
