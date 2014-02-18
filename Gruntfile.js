@@ -244,6 +244,11 @@ module.exports = function(grunt) {
                 command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
             },
 
+            // Config
+            wp_config: {
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<PHP define( "WP_DEBUG", true ); define( "WP_DEBUG_LOG", true ); PHP'
+            },
+
             // Plugins
             wp_plugins: {
                 cmd: function() {
