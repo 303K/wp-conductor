@@ -28,5 +28,12 @@ ghost/*
 # Grunt
 node_modules
 
+# Editors
+*.sublime-project
+*.sublime-workspace
+*.idea
+.idea
+.idea/*
+
 # Codekit
 codekit-config.json
