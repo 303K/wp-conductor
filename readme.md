@@ -2,7 +2,7 @@
 
 Wordpress Conductor is a framwork for kickstarting Wordpress development. By combining composer, bower and grunt it is possible to control third party packages and versions.
 
-### Deploy
+#### Deploy
 * `mkdir my-project` and `cd my-project`
 * `git clone https://github.com/Gizburdt/Wordpress-Conductor.git .`
 * `php composer.phar update`
@@ -37,7 +37,7 @@ Node isn't hard to install too. Just visit their [website](http://nodejs.org/) a
 When Node (and npm) are installed, it's easy to install Bower. Just run the command `npm install -g bower`.
 
 #### Grunt
-And last but not least, Grunt. Like bower it is installed with `npmg`. It's all done with this command: `npm install -g grunt-cli`.
+And last but not least, Grunt. Like bower it is installed with `npm`. It's all done with this command: `npm install -g grunt-cli`.
 
 ## Contributing
 Do you have some extra information about installing utilities or do you see some code that can be improved, please Fork and Pull Request. 
