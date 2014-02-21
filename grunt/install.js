@@ -10,9 +10,11 @@ module.exports = function(grunt) {
 		
 		// Exec
 		'exec:wp_download',
+		'exec:wp_config_',
 		'exec:wp_config',
 		'exec:wp_install',
 		'exec:wp_siteurl',
+		'exec:wp_config_',
 
 		// // Copy
 		'copy:wp_config', 

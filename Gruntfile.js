@@ -260,6 +260,11 @@ module.exports = function(grunt) {
                     var plugins = this.config('wp.plugins');
                     return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
                 }
+            },
+
+            // Siteurl
+            wp_config_: {
+                command: 'rm -rf wordpress/wp-config.php; rm -rf wp-config.php;'
             }
 
         }
