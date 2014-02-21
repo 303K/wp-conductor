@@ -11,7 +11,6 @@ module.exports = function(grunt) {
 		// Exec
 		'exec:wp_download',
 		'exec:wp_config',
-		'exec:wp_db_create',
 		'exec:wp_install',
 		'exec:wp_siteurl',
 
