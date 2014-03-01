@@ -13,11 +13,11 @@ module.exports = function(grunt) {
 		'exec:wp_download',
 		'exec:wp_config',
 		'exec:wp_install',
-		'exec:wp_siteurl',
+		'exec:wp_settings',
 		'exec:wp_plugins',
 
 		// Copy
-		'copy:wp_theme', 
+		'copy:wp_theme',
 
 	] );
 };
