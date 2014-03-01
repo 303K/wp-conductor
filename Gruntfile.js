@@ -224,8 +224,8 @@ module.exports = function(grunt) {
             wp_theme: {
                 expand: true,
                 flatten: true,
-                src: 'wp-content/themes/scaffold-child/*',
-                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>'
+                src: 'wp-content/themes/scaffold-child/**',
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
             },
 
             // Theme stylesheet
@@ -285,6 +285,17 @@ module.exports = function(grunt) {
                 }
             },      
 
+        },
+        // --
+
+        // Less
+        // ------------------------
+        less: {
+            install: {
+                files: {
+                    "wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.css": "wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less"
+                }
+            },
         }
         // --
     });

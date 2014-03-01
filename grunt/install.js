@@ -18,6 +18,10 @@ module.exports = function(grunt) {
 
 		// Copy
 		'copy:wp_theme',
+		'copy:wp_theme_stylesheet',
+
+		// Less
+		'less:install'
 
 	] );
 };
