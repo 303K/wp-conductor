@@ -136,7 +136,33 @@ module.exports = function(grunt) {
                             config: 'wp.theme.name',
                             type: 'input',
                             message: 'THEME_NAME:',
-                            default: 'conductor'
+                            default: 'Conductor'
+                        },
+                        {
+                            config: 'wp.theme.uri',
+                            type: 'input',
+                            message: 'THEME_URI:',
+                        },
+                        {
+                            config: 'wp.theme.description',
+                            type: 'input',
+                            message: 'THEME_DESCRIPTION:',
+                        },
+                        {
+                            config: 'wp.theme.author',
+                            type: 'input',
+                            message: 'THEME_AUTHOR:',
+                        },
+                        {
+                            config: 'wp.theme.author.uri',
+                            type: 'input',
+                            message: 'THEME_AUTHOR_URI:',
+                        },
+                        {
+                            config: 'wp.theme.version',
+                            type: 'input',
+                            message: 'THEME_VERSION:',
+                            default: '1.0.0'
                         }
                     ]
                 }
@@ -199,8 +225,25 @@ module.exports = function(grunt) {
                 expand: true,
                 flatten: true,
                 src: 'wp-content/themes/scaffold-child/*',
-                dest: 'wp-content/themes/<%= wp.theme.name %>'
-            }
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>'
+            },
+
+            // Theme stylesheet
+            wp_theme_stylesheet: {
+                src: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
+                options: {
+                    process: function(content) {
+                        return content
+                            .replace( "{THEME_NAME}",           grunt.config( 'wp.theme.name' ) )
+                            .replace( "{THEME_URI}",            grunt.config( 'wp.theme.uri' ) )
+                            .replace( "{THEME_DESCRIPTION}",    grunt.config( 'wp.theme.description' ) )
+                            .replace( "{THEME_AUTHOR}",         grunt.config( 'wp.theme.author' ) )
+                            .replace( "{THEME_AUTHOR_URI}",     grunt.config( 'wp.theme.author.uri' ) )
+                            .replace( "{THEME_VERSION}",        grunt.config( 'wp.theme.version' ) );
+                    }
+                }
+            },
 
         },
         // --
