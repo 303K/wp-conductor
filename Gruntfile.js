@@ -178,14 +178,9 @@ module.exports = function(grunt) {
                             message: 'WP_PLUGINS:',
                             choices: [
                                 {
-                                    value: 'jetpack',
-                                    name: 'Jetpack',
-                                    checked: false
-                                },
-                                {
-                                    value: 'posts-to-posts',
-                                    name: 'Posts2posts',
-                                    checked: false
+                                    value: 'akismet',
+                                    name: 'Akismet',
+                                    checked: true
                                 },
                                 {
                                     value: 'wordpress-seo',
@@ -206,6 +201,16 @@ module.exports = function(grunt) {
                                     value: 'woosidebars',
                                     name: 'Woosidebars',
                                     checked: true
+                                },
+                                {
+                                    value: 'jetpack',
+                                    name: 'Jetpack',
+                                    checked: false
+                                },
+                                {
+                                    value: 'posts-to-posts',
+                                    name: 'Posts2posts',
+                                    checked: false
                                 }
                             ]
                         }
@@ -222,10 +227,14 @@ module.exports = function(grunt) {
 
             // Theme
             wp_theme: {
-                expand: true,
-                flatten: true,
-                src: 'wp-content/themes/scaffold-child/**',
-                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'wp-content/themes/scaffold-child/',
+                        src: ['**/*'],
+                        dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
+                    }
+                ]
             },
 
             // Theme stylesheet
