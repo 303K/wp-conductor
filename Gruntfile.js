@@ -227,7 +227,14 @@ module.exports = function(grunt) {
         },
         // --
 
+        // Exec
+        // ------------------------
         exec: {
+
+            // Conduct
+            conduct: {
+                command: 'php composer.phar self-update; php composer.phar update; bower install;'
+            },
 
             // Download
             wp_download: {
@@ -265,7 +272,7 @@ module.exports = function(grunt) {
             // Siteurl
             wp_config_: {
                 command: 'rm -rf wordpress/wp-config.php; rm -rf wp-config.php;'
-            }
+            },            
 
         }
         // --
@@ -279,7 +286,7 @@ module.exports = function(grunt) {
 
     // Default
     grunt.registerTask( 'default', [
-        'concat'
+        
     ] );
 
 };
