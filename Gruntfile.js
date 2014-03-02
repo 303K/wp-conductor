@@ -259,7 +259,7 @@ module.exports = function(grunt) {
 
         // Exec
         // ------------------------
-        exec: {
+        shell: {
 
             // Conduct
             conduct: {

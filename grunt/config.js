@@ -4,8 +4,8 @@ module.exports = function(grunt) {
 		// Prompt
 		'prompt:wp_config',
 
-		// Exec
-		'exec:wp_config',
+		// Shell
+		'shell:wp_config',
 
 	] );
 };

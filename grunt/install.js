@@ -9,12 +9,12 @@ module.exports = function(grunt) {
 		'prompt:wp_theme',
 		'prompt:wp_plugins', 
 		
-		// Exec
-		'exec:wp_download',
-		'exec:wp_config',
-		'exec:wp_install',
-		'exec:wp_settings',
-		'exec:wp_plugins',
+		// Shell
+		'shell:wp_download',
+		'shell:wp_config',
+		'shell:wp_install',
+		'shell:wp_settings',
+		'shell:wp_plugins',
 
 		// Copy
 		'copy:wp_theme',
