@@ -257,7 +257,7 @@ module.exports = function(grunt) {
         },
         // --
 
-        // Exec
+        // Shell
         // ------------------------
         shell: {
 
@@ -292,7 +292,7 @@ module.exports = function(grunt) {
                     var plugins = this.config('wp.plugins');
                     return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
                 }
-            },      
+            },     
 
         },
         // --
