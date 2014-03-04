@@ -2,10 +2,10 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'plugins', [
 
 		// Prompt
-		'prompt:wp_plugins', 
+		'prompt:plugins', 
 		
 		// Shell
-		'shell:wp_plugins',
+		'shell:plugins',
 
 	] );
 };

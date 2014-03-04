@@ -3,10 +3,10 @@ module.exports = function(grunt) {
 		
 		// Prompt
 		'prompt:project',
-		'prompt:wp_config',
+		'prompt:config',
 
 		// Shell
-		'shell:wp_config',
+		'shell:config',
 
 	] );
 };

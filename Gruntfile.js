@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             },
 
             // Download
-            wp_download: {
+            download: {
                 options: {
                     questions: [
                         {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
             },
 
             // Config
-            wp_config: {
+            config: {
                 options: {
                     questions: [
                         {
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
             },
 
             // Install
-            wp_install: {
+            install: {
                 options: {
                     questions: [
                         {
@@ -129,7 +129,7 @@ module.exports = function(grunt) {
             },
 
             // Theme
-            wp_theme: {
+            theme: {
                 options: {
                     questions: [
                         {
@@ -169,7 +169,7 @@ module.exports = function(grunt) {
             },
 
             // Plugins
-            wp_plugins: {
+            plugins: {
                 options: {
                     questions: [
                         {
@@ -226,19 +226,15 @@ module.exports = function(grunt) {
         copy: {
 
             // Theme
-            wp_theme: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'wp-content/themes/scaffold-child/',
-                        src: ['**/*'],
-                        dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
-                    }
-                ]
+            theme: {
+                expand: true,
+                cwd: 'wp-content/themes/scaffold-child/',
+                src: ['**/*'],
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
             },
 
             // Theme stylesheet
-            wp_theme_stylesheet: {
+            stylesheet: {
                 src: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
                 dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
                 options: {
@@ -263,35 +259,44 @@ module.exports = function(grunt) {
 
             // Conduct
             conduct: {
-                command: 'php composer.phar self-update; php composer.phar update; bower install;'
+                command: 'php composer.phar self-update; php composer.phar update; bower install;', 
+                options: { stdout: true }
             },
 
             // Download
-            wp_download: {
-                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force'
+            download: {
+                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force',
+                options: { stdout: true }
             },
 
             // Config
-            wp_config: {
-                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url =>\');"'
+            config: {
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>\' );"',
+                options: {
+                    stdout: true,
+                    callback: function( err, stdout, stderr, cb ) {}
+                }
             },
 
             // Install
-            wp_install: {
-                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
+            install: {
+                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>',
+                options: { stdout: true }
             },
 
             // Settings
-            wp_settings: {
-                command: 'php wp-cli.phar option update siteurl <%= project.url %>/wordpress'
+            settings: {
+                command: 'php wp-cli.phar option update siteurl <%= project.url %>/wordpress',
+                options: { stdout: true }
             },
 
             // Plugins
-            wp_plugins: {
-                cmd: function() {
+            plugins: {
+                command: function() {
                     var plugins = this.config('wp.plugins');
                     return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
-                }
+                },
+                options: { stdout: true }
             },     
 
         },

@@ -3,22 +3,22 @@ module.exports = function(grunt) {
 
 		// Prompt
 		'prompt:project', 
-		'prompt:wp_download',
-		'prompt:wp_config', 
-		'prompt:wp_install', 
-		'prompt:wp_theme',
-		'prompt:wp_plugins', 
+		'prompt:download',
+		'prompt:config', 
+		'prompt:install', 
+		'prompt:theme',
+		'prompt:plugins', 
 		
 		// Shell
-		'shell:wp_download',
-		'shell:wp_config',
-		'shell:wp_install',
-		'shell:wp_settings',
-		'shell:wp_plugins',
+		'shell:download',
+		'shell:config',
+		'shell:install',
+		'shell:settings',
+		'shell:plugins',
 
 		// Copy
-		'copy:wp_theme',
-		'copy:wp_theme_stylesheet',
+		'copy:theme',
+		'copy:stylesheet',
 
 		// Less
 		'less:install'
