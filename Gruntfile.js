@@ -168,6 +168,20 @@ module.exports = function(grunt) {
                 }
             },
 
+            // Theme name
+            theme_name : {
+                options: {
+                    questions: [
+                        {
+                            config: 'wp.theme.name',
+                            type: 'input',
+                            message: 'THEME_NAME:',
+                            default: 'Conductor'
+                        }
+                    ]
+                }
+            },
+
             // Plugins
             plugins: {
                 options: {
@@ -283,7 +297,13 @@ module.exports = function(grunt) {
 
             // Settings
             settings: {
-                command: 'php wp-cli.phar option update siteurl <%= project.url %>/wordpress',
+                command: [
+                    'php wp-cli.phar option update siteurl <%= project.url %>/wordpress',
+                    'php wp-cli.phar option update blogdescription ""',
+                    'wp theme activate <%= wp.theme.name %>',
+                    'wp rewrite structure "/%postname%/"',
+                    'wp cache flush'
+                ].join(' && '),
                 options: { stdout: true }
             },
 
