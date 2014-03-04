@@ -271,11 +271,8 @@ module.exports = function(grunt) {
 
             // Config
             config: {
-                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>\' );"',
-                options: {
-                    stdout: true,
-                    callback: function( err, stdout, stderr, cb ) {}
-                }
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>/wp-content/\' );"',
+                options: { stdout: true }
             },
 
             // Install
