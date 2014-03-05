@@ -17,11 +17,15 @@ module.exports = function(grunt) {
 		'shell:plugins',
 
 		// Copy
+		'copy:config.php',
 		'copy:theme',
 		'copy:stylesheet',
 
 		// Less
-		'less:install'
+		'less:install',
+
+		// Cleanup
+		'shell:cleanup'
 
 	] );
 };

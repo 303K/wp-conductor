@@ -8,5 +8,11 @@ module.exports = function(grunt) {
 		// Shell
 		'shell:config',
 
+		// Copy
+		'copy:config',
+
+		// Cleanup
+		'shell:cleanup'
+
 	] );
 };
