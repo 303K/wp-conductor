@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		'shell:plugins',
 
 		// Copy
-		'copy:config.php',
+		'copy:config',
 
 		// Cleanup
 		'shell:cleanup'
