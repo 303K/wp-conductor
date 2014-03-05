@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 		'shell:plugins',
 
 		// Copy
-		'copy:config.php',
+		'copy:config',
 		'copy:theme',
 		'copy:stylesheet',
 
