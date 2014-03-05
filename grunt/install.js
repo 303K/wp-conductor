@@ -13,7 +13,6 @@ module.exports = function(grunt) {
 		'shell:download',
 		'shell:config',
 		'shell:install',
-		'shell:settings',
 		'shell:plugins',
 
 		// Copy
@@ -25,6 +24,7 @@ module.exports = function(grunt) {
 		'less:install',
 
 		// Cleanup
+		'shell:settings',
 		'shell:cleanup'
 
 	] );
