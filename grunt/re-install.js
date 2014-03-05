@@ -15,5 +15,8 @@ module.exports = function(grunt) {
 		// Copy
 		'copy:config.php'
 
+		// Cleanup
+		'shell:cleanup'
+
 	] );
 };
