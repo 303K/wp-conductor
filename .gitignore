@@ -6,6 +6,19 @@
 composer.lock
 vendor/
 
+# Node
+node_modules
+
+# Codekit
+codekit-config.json
+
+# Editors
+*.sublime-project
+*.sublime-workspace
+*.idea
+.idea
+.idea/*
+
 # Wordpress
 .htaccess
 wordpress/

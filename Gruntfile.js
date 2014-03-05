@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             },
 
             // Download
-            wp_download: {
+            download: {
                 options: {
                     questions: [
                         {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
             },
 
             // Config
-            wp_config: {
+            config: {
                 options: {
                     questions: [
                         {
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
             },
 
             // Install
-            wp_install: {
+            install: {
                 options: {
                     questions: [
                         {
@@ -129,21 +129,61 @@ module.exports = function(grunt) {
             },
 
             // Theme
-            wp_theme: {
+            theme: {
                 options: {
                     questions: [
                         {
                             config: 'wp.theme.name',
                             type: 'input',
                             message: 'THEME_NAME:',
-                            default: 'conductor'
+                            default: 'Conductor'
+                        },
+                        {
+                            config: 'wp.theme.uri',
+                            type: 'input',
+                            message: 'THEME_URI:',
+                        },
+                        {
+                            config: 'wp.theme.description',
+                            type: 'input',
+                            message: 'THEME_DESCRIPTION:',
+                        },
+                        {
+                            config: 'wp.theme.author',
+                            type: 'input',
+                            message: 'THEME_AUTHOR:',
+                        },
+                        {
+                            config: 'wp.theme.author.uri',
+                            type: 'input',
+                            message: 'THEME_AUTHOR_URI:',
+                        },
+                        {
+                            config: 'wp.theme.version',
+                            type: 'input',
+                            message: 'THEME_VERSION:',
+                            default: '1.0.0'
+                        }
+                    ]
+                }
+            },
+
+            // Theme name
+            theme_name : {
+                options: {
+                    questions: [
+                        {
+                            config: 'wp.theme.name',
+                            type: 'input',
+                            message: 'THEME_NAME:',
+                            default: 'Conductor'
                         }
                     ]
                 }
             },
 
             // Plugins
-            wp_plugins: {
+            plugins: {
                 options: {
                     questions: [
                         {
@@ -152,13 +192,8 @@ module.exports = function(grunt) {
                             message: 'WP_PLUGINS:',
                             choices: [
                                 {
-                                    value: 'jetpack',
-                                    name: 'Jetpack',
-                                    checked: true
-                                },
-                                {
-                                    value: 'posts-to-posts',
-                                    name: 'Posts2posts',
+                                    value: 'akismet',
+                                    name: 'Akismet',
                                     checked: true
                                 },
                                 {
@@ -180,6 +215,16 @@ module.exports = function(grunt) {
                                     value: 'woosidebars',
                                     name: 'Woosidebars',
                                     checked: true
+                                },
+                                {
+                                    value: 'jetpack',
+                                    name: 'Jetpack',
+                                    checked: false
+                                },
+                                {
+                                    value: 'posts-to-posts',
+                                    name: 'Posts2posts',
+                                    checked: false
                                 }
                             ]
                         }
@@ -195,85 +240,109 @@ module.exports = function(grunt) {
         copy: {
 
             // Config
-            wp_config: {
-                src: 'wp-config.php.dist',
+            config: {
+                src: 'wordpress/wp-config.php',
                 dest: 'wp-config.php',
                 options: {
                     process: function(content) {
-                        return content
-                            .replace( "{PROJECT_URL}",  grunt.config( 'project.url' ) )
-                            .replace( "{DB_NAME}",      grunt.config( 'wp.config.db.name' ) )
-                            .replace( "{DB_USER}",      grunt.config( 'wp.config.db.user' ) )
-                            .replace( "{DB_PASSWORD}",  grunt.config( 'wp.config.db.password' ) )
-                            .replace( "{DB_HOST}",      grunt.config( 'wp.config.db.host' ) )
-                            .replace( "{DB_CHARSET}",   grunt.config( 'wp.config.db.charset' ) )
-                            .replace( "{DB_COLLATE}",   '' )
-                            .replace( "{DB_PREFIX}",    grunt.config( 'wp.config.db.prefix' ) )
-                            .replace( "{WP_LANG}",      grunt.config( 'wp.config.wp.lang' ) )
-                            .replace( "{WP_DEBUG}",     grunt.config( 'wp.config.wp.debug' ) )
-                            .replace( "{WP_KEYS}",      '' );
+                        return content.replace( "/../wp-content", "/wp-content" );
                     }
                 }
             },
 
             // Theme
-            wp_theme: {
+            theme: {
                 expand: true,
-                flatten: true,
-                src: 'wp-content/themes/scaffold-child/*',
-                dest: 'wp-content/themes/<%= wp.theme.name %>'
+                cwd: 'wp-content/themes/scaffold-child/',
+                src: ['**/*'],
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/'
+            },
+
+            // Theme stylesheet
+            stylesheet: {
+                src: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
+                dest: 'wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less',
+                options: {
+                    process: function(content) {
+                        return content
+                            .replace( "{THEME_NAME}",           grunt.config( 'wp.theme.name' ) )
+                            .replace( "{THEME_URI}",            grunt.config( 'wp.theme.uri' ) )
+                            .replace( "{THEME_DESCRIPTION}",    grunt.config( 'wp.theme.description' ) )
+                            .replace( "{THEME_AUTHOR}",         grunt.config( 'wp.theme.author' ) )
+                            .replace( "{THEME_AUTHOR_URI}",     grunt.config( 'wp.theme.author.uri' ) )
+                            .replace( "{THEME_VERSION}",        grunt.config( 'wp.theme.version' ) );
+                    }
+                }
+            },
+
+        },
+        // --
+
+        // Shell
+        // ------------------------
+        shell: {
+
+            // Conduct
+            conduct: {
+                command: 'php composer.phar self-update; php composer.phar update; bower install;', 
+                options: { stdout: true }
+            },
+
+            // Download
+            download: {
+                command: 'wp core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force',
+                options: { stdout: true }
+            },
+
+            // Config
+            config: {
+                command: 'wp core config --dbname=<%= wp.config.db.name %> --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>/wp-content\' );"',
+                options: { stdout: true }
+            },
+
+            // Install
+            install: {
+                command: 'wp core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>',
+                options: { stdout: true }
+            },
+
+            // Settings
+            settings: {
+                command: [
+                    'wp option update siteurl <%= project.url %>/wordpress',
+                    'wp option update blogdescription ""',
+                    'wp theme activate <%= wp.theme.name %>',
+                    'wp rewrite structure "/%postname%/"',
+                    'wp cache flush'
+                ].join(' && '),
+                options: { stdout: true }
+            },
+
+            // Plugins
+            plugins: {
+                command: function() {
+                    var plugins = this.config('wp.plugins');
+                    return 'wp plugin install ' + plugins.join(' ') + ' --activate --force';
+                },
+                options: { stdout: true }
+            },
+
+            cleanup : {
+                command: 'rm wordpress/wp-config.php',
+                options: { stdout: true }
             }
 
         },
         // --
 
-        // Exec
+        // Less
         // ------------------------
-        exec: {
-
-            // Conduct
-            conduct: {
-                command: 'php composer.phar self-update; php composer.phar update; bower install;'
-            },
-
-            // Download
-            wp_download: {
-                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force'
-            },
-
-            // Config
-            wp_config: {
-                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %>  --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %>'
-            },
-
-            // Database
-            wp_db_create: {
-                command: 'php wp-cli.phar db create'
-            },
-
-            // Install
-            wp_install: {
-                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>'
-            },
-
-            // Siteurl
-            wp_siteurl: {
-                command: 'php wp-cli.phar option update siteurl <%= project.url %>/wordpress'
-            },
-
-            // Plugins
-            wp_plugins: {
-                cmd: function() {
-                    var plugins = this.config('wp.plugins');
-                    return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
+        less: {
+            install: {
+                files: {
+                    "wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.css": "wp-content/themes/<%= wp.theme.name.toLowerCase() %>/style.less"
                 }
             },
-
-            // Siteurl
-            wp_config_: {
-                command: 'rm -rf wordpress/wp-config.php; rm -rf wp-config.php;'
-            },            
-
         }
         // --
     });
