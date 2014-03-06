@@ -290,30 +290,30 @@ module.exports = function(grunt) {
 
             // Download
             download: {
-                command: 'wp core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force',
+                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force',
                 options: { stdout: true }
             },
 
             // Config
             config: {
-                command: 'wp core config --dbname=<%= wp.config.db.name %> --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>/wp-content\' );"',
+                command: 'php wp-cli.phar core config --dbname=<%= wp.config.db.name %> --dbuser=<%= wp.config.db.user %> --dbpass=<%= wp.config.db.password %> --dbhost=<%= wp.config.db.host %> --dbprefix=<%= wp.config.db.prefix %> --dbcharset=<%= wp.config.db.charset %> --locale=<%= wp.config.wp.lang %> --extra-php <<< "define(\'WP_CONTENT_DIR\', dirname(__FILE__) . \'/../wp-content\');\ndefine(\'WP_CONTENT_URL\', \'<%= project.url %>/wp-content\' );"',
                 options: { stdout: true }
             },
 
             // Install
             install: {
-                command: 'wp core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>',
+                command: 'php wp-cli.phar core install --url=<%= project.url %> --title=<%= project.title %> --admin_user=<%= wp.admin.name %> --admin_password=<%= wp.admin.password %> --admin_email=<%= wp.admin.email %>',
                 options: { stdout: true }
             },
 
             // Settings
             settings: {
                 command: [
-                    'wp option update siteurl <%= project.url %>/wordpress',
-                    'wp option update blogdescription ""',
-                    'wp theme activate <%= wp.theme.name %>',
-                    'wp rewrite structure "/%postname%/"',
-                    'wp cache flush'
+                    'php wp-cli.phar option update siteurl <%= project.url %>/wordpress',
+                    'php wp-cli.phar option update blogdescription ""',
+                    'php wp-cli.phar theme activate <%= wp.theme.name %>',
+                    'php wp-cli.phar rewrite structure "/%postname%/"',
+                    'php wp-cli.phar cache flush'
                 ].join(' && '),
                 options: { stdout: true }
             },
@@ -322,7 +322,7 @@ module.exports = function(grunt) {
             plugins: {
                 command: function() {
                     var plugins = this.config('wp.plugins');
-                    return 'wp plugin install ' + plugins.join(' ') + ' --activate --force';
+                    return 'php wp-cli.phar plugin install ' + plugins.join(' ') + ' --activate --force';
                 },
                 options: { stdout: true }
             },
