@@ -12,6 +12,7 @@ node_modules
 # Codekit
 codekit-config.json
 config.codekit
+.codekit-cache
 
 # Editors
 *.sublime-project

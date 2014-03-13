@@ -21,10 +21,10 @@ Git is used for version control. Installing it is not very hard and is weel expl
 It's not really about installing PHP, but setting some variables for utilities that use PHP, like WP-CLI. Just add this to your `~/.bash_profile` and it will save you some time:
 
 ```php
-export WP_CLI_PHP="/Applications/MAMP/bin/php/php5.4.19/bin/php"
-export MAMP_PHP=/Applications/MAMP/bin/php/php5.4.19/bin
+export WP_CLI_PHP="/Applications/MAMP/bin/php/{your-php-version}/bin/php"
+export MAMP_PHP="/Applications/MAMP/bin/php/{your-php-version}/bin"
 export PATH="$MAMP_PHP:$PATH"
-export PATH=$PATH:/Applications/MAMP/Library/bin
+export PATH="$PATH:/Applications/MAMP/Library/bin"
 ```
 
 #### Composer
