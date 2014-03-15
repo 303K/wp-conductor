@@ -2,14 +2,52 @@
 
 Wordpress Conductor is a framwork for kickstarting Wordpress development. By combining composer, bower and grunt it is possible to control third party packages and versions.
 
-#### Deploy
+### Deploy
 * `mkdir my-project` and `cd my-project`
 * `git clone https://github.com/Gizburdt/Wordpress-Conductor.git .`
-* `php composer.phar update`
-* `bower install`
 * `npm install`
+* `php composer.phar update` (or `grunt conduct`)
+* `bower install` (or `grunt conduct`)
 * `grunt install --force` and fill in your credentials. --force will skip failing tasks.
 * Open `http://localhost/my-project/wordpress/wp-admin` and be awesome!
+
+### Available tasks
+Grunt is a taskrunner, so we need some tasks :) Ofcourse we need `npm install` to install the necessary node modules.
+
+#### `grunt conduct`
+`grunt conduct` will run:
+* `php composer.phar self-update` will update composer.phar to its latest version
+* `php composer.phar update` will update all composer packages
+* `bower install` will install all bower packages
+* `bower update` will check and update all bower packages
+
+#### `grunt install`
+This task will completely install you environment:
+* Prompt for multiple credentials (for the next steps)
+* Download Wordpress
+* Create a wp-config.php file with all necessary constants
+* Install Wordpress
+* Install selected plugins
+* Setup your theme (based on scaffold-child)
+* Set some settings
+
+#### `grunt re-install`
+This task is used when you already ran `grunt install` and you moved your environment with git/ftp:
+* Download Wordpress
+* Create a wp-config.php
+* Install plugins
+
+#### `grunt download`
+Used to download Wordpress. It will move wordpress in the right folder.
+
+#### `grunt config`
+Create a wp-config.php file.
+
+#### `grunt plugins`
+Download the selected Wordpress plugins
+
+#### `grunt settings`
+Set the same settings as in `grunt install`
 
 ## Installing utilities
 Because we use multiple utilities within Conductor. I will show you how to install them. Some installations will be harder than others, but believe me, this will make your life easier :)

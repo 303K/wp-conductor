@@ -23,8 +23,10 @@ module.exports = function(grunt) {
 		// Less
 		'less:install',
 
-		// Cleanup
+		// Settings
 		'shell:settings',
+
+		// Cleanup
 		'shell:cleanup'
 
 	] );
