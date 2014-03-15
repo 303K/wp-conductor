@@ -12,10 +12,10 @@ Wordpress Conductor is a framwork for kickstarting Wordpress development. By com
 * Open `http://localhost/my-project/wordpress/wp-admin` and be awesome!
 
 ### Available tasks
-Grunt is a taskrunner, so we need some tasks :) Ofcourse we need `npm install` to install the necessary node modules.
+Grunt is a taskrunner, so we need some tasks :) Ofcourse we need `npm install` first, to install the necessary node modules.
 
 #### `grunt conduct`
-`grunt conduct` will run:
+This task will run:
 * `php composer.phar self-update` will update composer.phar to its latest version
 * `php composer.phar update` will update all composer packages
 * `bower install` will install all bower packages
