@@ -284,13 +284,18 @@ module.exports = function(grunt) {
 
             // Conduct
             conduct: {
-                command: 'php composer.phar self-update; php composer.phar update; bower install;', 
+                command: [
+                    'php composer.phar self-update',
+                    'php composer.phar update',
+                    'bower install',
+                    'bower update'
+                ].join(' && '),
                 options: { stdout: true }
             },
 
             // Download
             download: {
-                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %>  --version=<%= wp.download.version %> --path=wordpress --force',
+                command: 'php wp-cli.phar core download --locale=<%= wp.download.locale %> --version=<%= wp.download.version %> --path=wordpress --force',
                 options: { stdout: true }
             },
 
