@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	grunt.registerTask( 'download', [
+	grunt.registerTask( 'wp-download', [
 		
 		// Prompt
 		'prompt:download',

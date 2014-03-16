@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	grunt.registerTask( 'settings', [
+	grunt.registerTask( 'wp-settings', [
 		
 		// Prompt
 		'prompt:project',

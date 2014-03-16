@@ -37,17 +37,17 @@ This task is used when you already ran `grunt install` and you moved your enviro
 * Create a wp-config.php
 * Install plugins
 
-#### `grunt download`
+#### `grunt wp-download`
 Used to download Wordpress. It will move wordpress in the right folder.
 
-#### `grunt config`
+#### `grunt wp-config`
 Create a wp-config.php file.
 
-#### `grunt plugins`
+#### `grunt wp-plugins`
 Download the selected Wordpress plugins
 
-#### `grunt settings`
-Set the same settings as in `grunt install`
+#### `grunt wp-settings`
+Set the same settings as `grunt install` does
 
 ## Installing utilities
 Because we use multiple utilities within Conductor. I will show you how to install them. Some installations will be harder than others, but believe me, this will make your life easier :)
