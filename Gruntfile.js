@@ -37,7 +37,7 @@ module.exports = function(grunt) {
                             config: 'wp.download.version',
                             type: 'input',
                             message: 'WP_VERSION:',
-                            default: '3.8.1'
+                            default: '3.9'
                         }
                     ]
                 }
