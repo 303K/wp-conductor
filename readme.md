@@ -2,6 +2,8 @@
 
 Wordpress Conductor is a framwork for kickstarting Wordpress development. By combining composer, bower and grunt it is possible to control third party packages and versions.
 
+**Version:** 0.1
+
 ### Deploy
 * `mkdir my-project` and `cd my-project`
 * `git clone https://github.com/Gizburdt/Wordpress-Conductor.git .`
