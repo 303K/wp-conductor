@@ -10,7 +10,7 @@ Wordpress Conductor is a framwork for kickstarting Wordpress development. By com
 * `npm install`
 * `php composer.phar update` (or `grunt conduct`)
 * `bower install` (or `grunt conduct`)
-* `grunt install --force` and fill in your credentials. --force will skip failing tasks.
+* `grunt deploy` (or `grunt re-deploy`) and fill in your credentials.
 * Open `http://localhost/my-project/wordpress/wp-admin` and be awesome!
 
 ### Available tasks
@@ -23,8 +23,8 @@ This task will run:
 * `bower install` will install all bower packages
 * `bower update` will check and update all bower packages
 
-#### `grunt install`
-This task will completely install you environment:
+#### `grunt deploy`
+This task will completely deploy your environment:
 * Prompt for multiple credentials (for the next steps)
 * Download Wordpress
 * Create a wp-config.php file with all necessary constants
@@ -33,8 +33,8 @@ This task will completely install you environment:
 * Setup your theme (based on scaffold-child)
 * Set some settings
 
-#### `grunt re-install`
-This task is used when you already ran `grunt install` and you moved your environment with git/ftp:
+#### `grunt re-deploy`
+This task is used when you already ran `grunt deploy` and you moved your environment with git/ftp:
 * Download Wordpress
 * Create a wp-config.php
 * Install plugins
@@ -49,7 +49,7 @@ Create a wp-config.php file.
 Download the selected Wordpress plugins
 
 #### `grunt wp-settings`
-Set the same settings as `grunt install` does
+Set the same settings as `grunt deploy` does
 
 ## Installing utilities
 Because we use multiple utilities within Conductor. I will show you how to install them. Some installations will be harder than others, but believe me, this will make your life easier :)
