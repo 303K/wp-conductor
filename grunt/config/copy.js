@@ -12,7 +12,7 @@ module.exports = {
     },
 
     // Theme
-    theme: {
+    scaffold: {
         expand: true,
         cwd: 'wp-content/themes/scaffold-child/',
         src: ['**/*'],

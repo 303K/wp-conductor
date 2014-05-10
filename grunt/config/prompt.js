@@ -63,16 +63,16 @@ module.exports = {
                     default: 'localhost'
                 },
                 {
-                    config: 'wp.config.db.charset',
-                    type: 'input',
-                    message: 'DB_CHARSET:',
-                    default: 'utf8'
-                },
-                {
                     config: 'wp.config.db.prefix',
                     type: 'input',
                     message: 'DB_PREFIX:',
                     default: 'wp_'
+                },
+                {
+                    config: 'wp.config.db.charset',
+                    type: 'input',
+                    message: 'DB_CHARSET:',
+                    default: 'utf8'
                 },
                 {
                     config: 'wp.config.wp.lang',
@@ -120,7 +120,7 @@ module.exports = {
     },
 
     // Theme
-    theme: {
+    scaffold: {
         options: {
             questions: [
                 {
