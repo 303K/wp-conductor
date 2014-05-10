@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		'prompt:download',
 		'prompt:config', 
 		'prompt:install', 
-		'prompt:theme',
+		'prompt:scaffold',
 		'prompt:plugins', 
 		
 		// Shell
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
 		// Copy
 		'copy:config',
-		'copy:theme',
+		'copy:scaffold',
 		'copy:stylesheet',
 
 		// Less
