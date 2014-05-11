@@ -6,6 +6,10 @@ module.exports = function(grunt) {
 
 		// Copy
 		'copy:scaffold',
+		'copy:stylesheet',
+
+		// Less
+		'less:scaffold',
 
 		// Cleanup
 		'shell:cleanup'

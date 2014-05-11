@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 		'copy:stylesheet',
 
 		// Less
-		'less:install',
+		'less:scaffold',
 
 		// Settings
 		'shell:settings',
