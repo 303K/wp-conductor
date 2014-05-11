@@ -50,9 +50,23 @@ module.exports = {
         options: { stdout: true }
     },
 
-    cleanup : {
-        command: 'rm wordpress/wp-config.php',
+    // Update
+    update: {
+        command: [
+            'php wp-cli.phar core update',
+            'php wp-cli.phar core update-db',
+            'php wp-cli.phar plugin update-all'
+        ].join(' && '),
         options: { stdout: true }
-    }
-    
+    },
+
+    // Cleanup
+    cleanup : {
+        command: [
+            'rm wordpress/wp-config.php',
+            'php wp-cli.phar cache flush'
+        ].join(' && '),
+        options: { stdout: true }
+    }    
+
 }
