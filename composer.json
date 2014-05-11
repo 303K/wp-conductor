@@ -9,12 +9,12 @@
         }
     ],
     "require": {
-        "php":                                          ">=5.3.0",
-        "composer/installers":                          "~1.0",
-        "gizburdt/wabbr":                               "dev-master",
-        "gizburdt/scaffold":                            "dev-master",
-        "gizburdt/scaffold-child":                      "dev-master",
-        "gizburdt/cuztom":                              "dev-master"
+        "php":                           ">=5.3.0",
+        "composer/installers":           "~1.0",
+        "gizburdt/wabbr":                "dev-master",
+        "gizburdt/scaffold":             "dev-master",
+        "gizburdt/scaffold-child":       "dev-master",
+        "gizburdt/cuztom":               "dev-master",
     },
     "config": {
         "vendor-dir":           "wp-content/vendor",
@@ -44,11 +44,6 @@
             "name": "gizburdt/cuztom",
             "type": "vcs",
             "url": "https://github.com/Gizburdt/Wordpress-Cuztom-Helper.git"
-        },
-        {
-            "name": "roots/soil",
-            "type": "vcs",
-            "url": "https://github.com/roots/soil"
         }
     ]
 }
