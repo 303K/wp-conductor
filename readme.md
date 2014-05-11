@@ -39,6 +39,9 @@ This task is used when you already ran `grunt deploy` and you moved your environ
 * Create a wp-config.php
 * Install plugins
 
+#### `grunt scaffold`
+This task copies scaffold-child to a new theme
+
 #### `grunt wp-download`
 Used to download Wordpress. It will move wordpress in the right folder.
 

@@ -44,6 +44,11 @@
             "name": "gizburdt/cuztom",
             "type": "vcs",
             "url": "https://github.com/Gizburdt/Wordpress-Cuztom-Helper.git"
+        },
+        {
+            "name": "roots/soil",
+            "type": "vcs",
+            "url": "https://github.com/roots/soil"
         }
     ]
 }
