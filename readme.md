@@ -54,6 +54,9 @@ Download the selected Wordpress plugins
 #### `grunt wp-settings`
 Set the same settings as `grunt deploy` does
 
+#### `grunt wp-update`
+Runs a wordpress, db and plugin update
+
 ## Installing utilities
 Because we use multiple utilities within Conductor. I will show you how to install them. Some installations will be harder than others, but believe me, this will make your life easier :)
 
