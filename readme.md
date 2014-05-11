@@ -48,6 +48,9 @@ Used to download Wordpress. It will move wordpress in the right folder.
 #### `grunt wp-config`
 Create a wp-config.php file.
 
+#### `grunt wp-install`
+Run Wordpress install process.
+
 #### `grunt wp-plugins`
 Download the selected Wordpress plugins
 
