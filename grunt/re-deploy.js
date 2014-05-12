@@ -8,7 +8,6 @@ module.exports = function(grunt) {
 		'prompt:plugins', 
 		
 		// Shell
-		'shell:conduct',
 		'shell:download',
 		'shell:config',
 		'shell:plugins',
