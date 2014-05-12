@@ -14,7 +14,7 @@
         "gizburdt/wabbr":                "dev-master",
         "gizburdt/scaffold":             "dev-master",
         "gizburdt/scaffold-child":       "dev-master",
-        "gizburdt/cuztom":               "dev-master",
+        "gizburdt/cuztom":               "dev-master"
     },
     "config": {
         "vendor-dir":           "wp-content/vendor",
