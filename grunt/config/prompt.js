@@ -205,7 +205,7 @@ module.exports = {
                         {
                             value: 'woosidebars',
                             name: 'Woosidebars',
-                            checked: true
+                            checked: false
                         },
                         {
                             value: 'jetpack',
