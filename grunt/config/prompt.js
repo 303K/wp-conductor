@@ -28,7 +28,7 @@ module.exports = {
                     config: 'wp.download.version',
                     type: 'input',
                     message: 'WP_VERSION:',
-                    default: '3.9'
+                    default: '3.9.1'
                 }
             ]
         }
