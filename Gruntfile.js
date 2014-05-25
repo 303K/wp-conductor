@@ -66,8 +66,8 @@ function loadConfig(path) {
     var key;
 
     glob.sync('*', { cwd: path }).forEach(function(option) {
-    key = option.replace(/\.js$/,'');
-    object[key] = require(path + option);
+        key = option.replace(/\.js$/,'');
+        object[key] = require(path + option);
     });
 
     return object;
