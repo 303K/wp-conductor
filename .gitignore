@@ -29,7 +29,7 @@ wp-content/themes/scaffold/
 wp-content/themes/scaffold-child/
 wp-content/themes/conductor
 wp-content/upgrade
-# wp-content/languages
+wp-content/languages
 
 # Plugins
 !wp-content/plugins/
