@@ -5,7 +5,7 @@ Wordpress Conductor is a framwork for kickstarting Wordpress development. By com
 **Version:** 0.1.7
 
 ### Deploy
-* `mkdir my-project` and `cd my-project`
+* `mkdir my-project`, `cd my-project`
 * `git clone https://github.com/Gizburdt/Wordpress-Conductor.git .`
 * `npm install`
 * `grunt deploy` (or `grunt re-deploy`) and fill in your credentials.
@@ -24,7 +24,7 @@ This task will run:
 #### `grunt deploy`
 This task will completely deploy your environment:
 * Prompt for multiple credentials (for the next steps)
-* Run `grunt conduct`
+* Run bower, composer
 * Download Wordpress
 * Create a wp-config.php file with all necessary constants
 * Install Wordpress
@@ -34,7 +34,7 @@ This task will completely deploy your environment:
 
 #### `grunt re-deploy`
 This task is used when you already ran `grunt deploy` and you moved your environment with git/ftp:
-* Run `grunt conduct`
+* Run bower, composer
 * Download Wordpress
 * Create a wp-config.php
 * Install plugins
@@ -43,7 +43,7 @@ This task is used when you already ran `grunt deploy` and you moved your environ
 This task copies scaffold-child to a new theme
 
 #### `grunt wp-download`
-Used to download Wordpress. It will move wordpress in the right folder.
+Used to download Wordpress. It will move wordpress in the right folder (/wordpress).
 
 #### `grunt wp-config`
 Create a wp-config.php file.

@@ -25,6 +25,8 @@ config.codekit
 /.htaccess
 /wordpress/
 wp-config.php
+
+# Content
 wp-content/themes/scaffold/
 wp-content/themes/scaffold-child/
 wp-content/themes/conductor
