@@ -203,6 +203,16 @@ module.exports = {
                             checked: true
                         },
                         {
+                            value: 'duplicate-post',
+                            name: 'Duplicate post',
+                            checked: false
+                        },
+                        {
+                            value: 'custom-css-by-dev7studios',
+                            name: 'Custom CSS',
+                            checked: false
+                        },
+                        {
                             value: 'woosidebars',
                             name: 'Woosidebars',
                             checked: false
