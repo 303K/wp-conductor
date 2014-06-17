@@ -1,11 +1,11 @@
 {
-    "name":                 "gizburdt/wordpress-conductor",
+    "name":                 "gizburdt/wp-conductor",
     "type":                 "project",
     "authors": [
         {
             "name":         "Gijs Jorissen",
-            "email":        "gizburdt@gmail.com",
-            "homepage":     "http://www.gizburdt.com/"
+            "email":        "lol@gizburdt.com",
+            "homepage":     "http://gizburdt.com/"
         }
     ],
     "require": {
@@ -28,22 +28,22 @@
         {
             "name": "gizburdt/wabbr",
             "type": "vcs",
-            "url": "https://github.com/Gizburdt/Wordpress-Wabbr.git"
+            "url": "https://github.com/gizburdt/wabbr.git"
         },
         {
             "name": "gizburdt/scaffold",
             "type": "vcs",
-            "url": "https://github.com/Gizburdt/Wordpress-Scaffold.git"
+            "url": "https://github.com/izburdt/wp-scaffold.git"
         },
         {
             "name": "gizburdt/scaffold-child",
             "type": "vcs",
-            "url": "https://github.com/Gizburdt/Wordpress-Scaffold-Child.git"
+            "url": "https://github.com/gizburdt/wp-scaffold-child.git"
         },
         {
             "name": "gizburdt/cuztom",
             "type": "vcs",
-            "url": "https://github.com/Gizburdt/Wordpress-Cuztom-Helper.git"
+            "url": "https://github.com/gizburdt/wp-cuztom.git"
         }
     ]
 }
