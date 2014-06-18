@@ -33,7 +33,7 @@
         {
             "name": "gizburdt/scaffold",
             "type": "vcs",
-            "url": "https://github.com/izburdt/wp-scaffold.git"
+            "url": "https://github.com/gizburdt/wp-scaffold.git"
         },
         {
             "name": "gizburdt/scaffold-child",
