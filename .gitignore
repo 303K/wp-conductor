@@ -44,3 +44,6 @@ ghost/*
 
 # W3TC
 wp-content/cache
+
+# Robots
+/robots.txt
