@@ -203,18 +203,23 @@ module.exports = {
                             checked: true
                         },
                         {
+                            value: 'woosidebars',
+                            name: 'Woosidebars',
+                            checked: false
+                        },
+                        {
                             value: 'duplicate-post',
                             name: 'Duplicate post',
                             checked: false
                         },
                         {
-                            value: 'custom-css-by-dev7studios',
-                            name: 'Custom CSS',
+                            value: 'wp-smushit',
+                            name: 'WP Smush.it',
                             checked: false
                         },
                         {
-                            value: 'woosidebars',
-                            name: 'Woosidebars',
+                            value: 'custom-css-by-dev7studios',
+                            name: 'Custom CSS',
                             checked: false
                         },
                         {
@@ -225,6 +230,11 @@ module.exports = {
                         {
                             value: 'posts-to-posts',
                             name: 'Posts2posts',
+                            checked: false
+                        },
+                        {
+                            value: 'p3-profiler',
+                            name: 'P3 Profiler',
                             checked: false
                         }
                     ]
